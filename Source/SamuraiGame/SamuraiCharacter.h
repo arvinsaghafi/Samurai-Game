@@ -78,7 +78,7 @@ private:
 	TSubclassOf<AKatana> KatanaClass;
 
 	// Gets hold of the gun
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	AKatana* Katana;
 
 	UPROPERTY()

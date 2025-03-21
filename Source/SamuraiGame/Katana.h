@@ -1,30 +1,37 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// katana.h
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/BoxComponent.h"
 #include "Katana.generated.h"
 
 UCLASS()
 class SAMURAIGAME_API AKatana : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+    
+public: 
 	// Sets default values for this actor's properties
 	AKatana();
 
-	void PullTrigger();
+	void Attack();
+	void EndAttack();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public: 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
+					   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, 
+					   bool bFromSweep, const FHitResult& SweepResult);
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -33,27 +40,31 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
-	UPROPERTY(EditAnywhere)
-	UParticleSystem *MuzzleFlash;
+	UPROPERTY(VisibleAnywhere)
+	UBoxComponent* HitBox;
 
 	UPROPERTY(EditAnywhere)
-	USoundBase* MuzzleSound;
+	UParticleSystem* SlashEffect;
 
 	UPROPERTY(EditAnywhere)
-	UParticleSystem *ImpactEffect;
+	USoundBase* SlashSound;
+
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* ImpactEffect;
 
 	UPROPERTY(EditAnywhere)
 	USoundBase* ImpactSound;
 
 	UPROPERTY(EditAnywhere)
-	float MaxRange = 1000;
+	float Damage = 25.0f;
 
-	UPROPERTY(EditAnywhere)
-	float Damage = 10;
+	UPROPERTY()
+	TArray<AActor*> HitActors;
 
-	//bool GunTrace(FHitResult &Hit, FVector& ShotDirection);
-
-	bool IsColliding(TArray<AActor*> OverlappingActors);
+	bool bIsAttacking;
 
 	AController* GetOwnerController() const;
+	void ResetHitActors();
+
+	FTimerHandle AttackTimerHandle;
 };
