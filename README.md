@@ -2,6 +2,11 @@
 
 ## Description
 Samurai Game is a PvP multiplayer, sword-fighting action game. It is set in third-person, and the objective is to battle against another player in a fighting arena using katanas, combos, and abilities. The game can have multiple characters to play as, each with their own class and statistics. There may also be multiple stages, including static and moving stages, allowing players to use their creativity and create interesting fighting dynamics. Unreal Engine 5 is used as the game engine for its high-quality graphics, as well as programming in a user-friendly visual language alongside development in C++. On the technical side, the game can use peer-to-peer networking and Steam’s Online Subsystem API to enable multiplayer connectivity. The game is estimated to take around 1-2 years of development.
+
+<img width="1804" height="1100" alt="Screenshot 2025-01-20 193942" src="https://github.com/user-attachments/assets/56d5bb56-6030-40cb-9bb9-482d5406a871" />
+
+_*Early preview, development in progress._
+
 ## Use
 To clone this repository:
 * In a command line window with [Git](https://git-scm.com/) or
